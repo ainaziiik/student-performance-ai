@@ -6,7 +6,6 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -14,6 +13,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 
 st.title("🏫 UCI Student Performance Dataset")
 uploaded_file = st.file_uploader(
@@ -97,7 +97,7 @@ models = {
 results = {}
 
 for name, model in models.items():
-    
+ 
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     accuracy = accuracy_score(
@@ -105,6 +105,12 @@ for name, model in models.items():
         preds
     )
     results[name] = accuracy
+
+best_model_name = max(results, key=results.get)
+best_model = models[best_model_name]
+
+best_model.fit(X_train, y_train)
+best_preds = best_model.predict(X_test)
 
 results_df = pd.DataFrame({
     "Модель": results.keys(),
@@ -125,3 +131,21 @@ st.success(
     f"🏆 Лучшая модель: {best_model} "
     f"({results[best_model]:.2%})"
 )
+
+st.subheader("📉 Confusion Matrix (лучшая модель)")
+
+cm = confusion_matrix(y_test, best_preds)
+
+fig, ax = plt.subplots()
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt="d",
+    cmap="Purples",
+    ax=ax
+)
+
+ax.set_xlabel("Predicted")
+ax.set_ylabel("Actual")
+
+st.pyplot(fig)
