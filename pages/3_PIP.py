@@ -15,3 +15,15 @@ if uploaded_file is not None:
     st.success("Файл загружен")
 
     st.dataframe(df.head())
+
+st.subheader("Первые строки датасета")
+st.dataframe(df.head())
+
+st.subheader("Размер датасета")
+st.write(df.shape)
+
+st.subheader("Названия столбцов")
+st.write(df.columns.tolist())
+
+st.subheader("Типы данных")
+st.write(df.dtypes)
