@@ -32,7 +32,8 @@ if uploaded_file is not None:
 
     data = data.fillna(0)
 
-    target_col = st.selectbox("Выбери target колонку", data.columns)
+    target_col = "Target"
+    data[target_col] = LabelEncoder().fit_transform(data[target_col])
 
     X = data.drop(columns=[target_col])
     y = data[target_col]
