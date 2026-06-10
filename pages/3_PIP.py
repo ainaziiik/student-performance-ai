@@ -1,29 +1,38 @@
 import streamlit as st
 import pandas as pd
 
-st.title("🎓 PIP — Университетский датасет")
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
-uploaded_file = st.file_uploader(
-    "Загрузите PIP CSV",
-    type="csv"
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+
+st.title("🎓 PIP Student Performance")
+
+df = pd.read_csv(
+    "Student performance (Polytechnic Institute of Portalegre).csv"
 )
 
-if uploaded_file is not None:
-
-    df = pd.read_csv(uploaded_file)
-
-    st.success("Файл загружен")
-
-    st.dataframe(df.head())
-
-st.subheader("Первые строки датасета")
 st.dataframe(df.head())
 
-st.subheader("Размер датасета")
-st.write(df.shape)
+df = df.copy()
 
-st.subheader("Названия столбцов")
-st.write(df.columns.tolist())
+df["Target"] = df["Target"].replace({
+    "Graduate": 1,
+    "Dropout": 0,
+    "Enrolled": 0
+})
 
-st.subheader("Типы данных")
-st.write(df.dtypes)
+X = df.drop("Target", axis=1)
+y = df["Target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
