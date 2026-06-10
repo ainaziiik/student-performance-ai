@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-data = data.apply(pd.to_numeric, errors="coerce")
-data = data.replace([np.inf, -np.inf], np.nan)
-data = data.fillna(0)
-
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -24,12 +20,12 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
-
     df = pd.read_csv(uploaded_file)
-
     st.success("Файл загружен")
-
     st.dataframe(df.head())
+    data = data.apply(pd.to_numeric, errors="coerce")
+    data = data.replace([np.inf, -np.inf], np.nan)
+    data = data.fillna(0)
 
     # 👇 ВСЁ ДАЛЬШЕ ТОЛЬКО ВНУТРИ БЛОКА
 
