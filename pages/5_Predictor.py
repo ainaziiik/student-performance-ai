@@ -1,7 +1,11 @@
 import streamlit as st
+import pandas as pd
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
 
 st.title("🔮 Student Performance Predictor")
-
+print(df.columns.tolist())
 dataset = st.selectbox(
     "Выберите датасет",
     [
@@ -46,13 +50,6 @@ if dataset == "PIP University":
     )
 
     if st.button("🔮 Predict"):
-
-        score = (
-            admission_grade
-            + scholarship * 20
-            + tuition * 20
-            - debtor * 30
-        )
 
         if score > 120:
 
