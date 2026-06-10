@@ -1,5 +1,10 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+
+data = data.apply(pd.to_numeric, errors="coerce")
+data = data.replace([np.inf, -np.inf], np.nan)
+data = data.fillna(0)
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
