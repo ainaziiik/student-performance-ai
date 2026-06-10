@@ -12,15 +12,6 @@ dataset = st.selectbox(
 
 st.write("Выбран:", dataset)
 
-import streamlit as st
-
-st.title("🔮 Student Performance Predictor")
-
-dataset = st.selectbox(
-    "Выберите датасет",
-    ["UCI School", "PIP University"]
-)
-
 if dataset == "PIP University":
 
     st.subheader("🎓 Параметры студента")
