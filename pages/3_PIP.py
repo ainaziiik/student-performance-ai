@@ -19,49 +19,56 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
+
     df = pd.read_csv(uploaded_file)
+
     st.success("Файл загружен")
+
     st.dataframe(df.head())
 
-data = df.copy()
-for col in data.columns:
-    if data[col].dtype == "object":
-        data[col] = LabelEncoder().fit_transform(data[col].astype(str))
-data = data.fillna(0)
+    # 👇 ВСЁ ДАЛЬШЕ ТОЛЬКО ВНУТРИ БЛОКА
 
-target_col = st.selectbox("Выбери target колонку", data.columns)
+    data = df.copy()
 
-X = data.drop(columns=[target_col])
-y = data[target_col]
+    for col in data.columns:
+        if data[col].dtype == "object":
+            data[col] = LabelEncoder().fit_transform(data[col].astype(str))
 
-models = {
-    "Logistic Regression": LogisticRegression(max_iter=1000),
-    "Random Forest": RandomForestClassifier(),
-    "Decision Tree": DecisionTreeClassifier(),
-    "KNN": KNeighborsClassifier(),
-    "Naive Bayes": GaussianNB()
-}
+    data = data.fillna(0)
 
-results = {}
+    target_col = st.selectbox("Выбери target колонку", data.columns)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+    X = data.drop(columns=[target_col])
+    y = data[target_col]
 
-for name, model in models.items():
-    model.fit(X_train, y_train)
-    preds = model.predict(X_test)
-    results[name] = accuracy_score(y_test, preds)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
 
-st.subheader("📊 Результаты моделей")
+    models = {
+        "Logistic Regression": LogisticRegression(max_iter=1000),
+        "Random Forest": RandomForestClassifier(),
+        "Decision Tree": DecisionTreeClassifier(),
+        "KNN": KNeighborsClassifier(),
+        "Naive Bayes": GaussianNB()
+    }
 
-st.dataframe(
-    pd.DataFrame({
-        "Model": results.keys(),
-        "Accuracy": [f"{v:.2%}" for v in results.values()]
-    })
-)
+    results = {}
 
-best_model = max(results, key=results.get)
+    for name, model in models.items():
+        model.fit(X_train, y_train)
+        preds = model.predict(X_test)
+        results[name] = accuracy_score(y_test, preds)
 
-st.success(f"🏆 Лучшая модель: {best_model}")
+    st.subheader("📊 Результаты моделей")
+
+    st.dataframe(
+        pd.DataFrame({
+            "Model": results.keys(),
+            "Accuracy": [f"{v:.2%}" for v in results.values()]
+        })
+    )
+
+    best_model = max(results, key=results.get)
+
+    st.success(f"🏆 Лучшая модель: {best_model}")
