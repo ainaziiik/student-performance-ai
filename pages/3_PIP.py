@@ -1,71 +1,20 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+st.title("🎓 PIP Dataset Analysis")
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-
-st.title("🎓 PIP — Университетский датасет")
-
-uploaded_file = st.file_uploader(
-    "Загрузите PIP CSV",
-    type="csv"
+df = pd.read_csv(
+    "Student performance (Polytechnic Institute of Portalegre).csv"
 )
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    data = df.copy()
-    data = data.apply(pd.to_numeric, errors="coerce")
-    data = data.replace([np.inf, -np.inf], np.nan)
-    data = data.fillna(0)
+st.subheader("Первые строки датасета")
+st.dataframe(df.head())
 
-    for col in data.columns:
-        if data[col].dtype == "object":
-            data[col] = LabelEncoder().fit_transform(data[col].astype(str))
+st.subheader("Размер датасета")
+st.write(df.shape)
 
-    data = data.fillna(0)
+st.subheader("Названия столбцов")
+st.write(df.columns.tolist())
 
-    target_col = "Target"
-    data[target_col] = LabelEncoder().fit_transform(data[target_col])
-
-    X = data.drop(columns=[target_col])
-    y = data[target_col]
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-
-    models = {
-        "Logistic Regression": LogisticRegression(max_iter=1000),
-        "Random Forest": RandomForestClassifier(),
-        "Decision Tree": DecisionTreeClassifier(),
-        "KNN": KNeighborsClassifier(),
-        "Naive Bayes": GaussianNB()
-    }
-
-    results = {}
-
-    for name, model in models.items():
-        model.fit(X_train, y_train)
-        preds = model.predict(X_test)
-        results[name] = accuracy_score(y_test, preds)
-
-    st.subheader("📊 Результаты моделей")
-
-    st.dataframe(
-        pd.DataFrame({
-            "Model": results.keys(),
-            "Accuracy": [f"{v:.2%}" for v in results.values()]
-        })
-    )
-
-    best_model = max(results, key=results.get)
-
-    st.success(f"🏆 Лучшая модель: {best_model}")
+st.subheader("Типы данных")
+st.write(df.dtypes)
