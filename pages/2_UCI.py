@@ -72,6 +72,13 @@ X = data_clean.drop(
     errors="ignore"
 )
 y = data_clean["target"]
+
+X = X.apply(
+    pd.to_numeric,
+    errors="coerce"
+)
+
+X = X.fillna(0)
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -90,6 +97,7 @@ models = {
 results = {}
 
 for name, model in models.items():
+    st.write(X.dtypes)
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     accuracy = accuracy_score(
