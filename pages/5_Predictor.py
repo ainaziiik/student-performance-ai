@@ -5,60 +5,32 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
 st.title("🔮 Student Performance Predictor")
-print(df.columns.tolist())
-dataset = st.selectbox(
-    "Выберите датасет",
-    [
-        "UCI School",
-        "PIP University"
-    ]
+
+df = pd.read_csv(
+    "Student performance (Polytechnic Institute of Portalegre).csv"
 )
 
-st.write("Выбран:", dataset)
+data_clean = df.copy()
 
-if dataset == "PIP University":
+for col in data_clean.columns:
+    if data_clean[col].dtype == "object":
+        le = LabelEncoder()
+        data_clean[col] = le.fit_transform(
+            data_clean[col].astype(str)
+        )
 
-    st.subheader("🎓 Параметры студента")
+X = data_clean.drop(
+    "Target",
+    axis=1
+)
 
-    age = st.slider(
-        "Возраст",
-        17,
-        70,
-        20
-    )
+y = data_clean["Target"]
 
-    admission_grade = st.slider(
-        "Оценка поступления",
-        0,
-        200,
-        120
-    )
+model = RandomForestClassifier(
+    random_state=42
+)
 
-    scholarship = st.selectbox(
-        "Стипендия",
-        [0, 1]
-    )
+model.fit(X, y)
 
-    debtor = st.selectbox(
-        "Есть задолженность?",
-        [0, 1]
-    )
 
-    tuition = st.selectbox(
-        "Обучение оплачено?",
-        [0, 1]
-    )
-
-    if st.button("🔮 Predict"):
-
-        if score > 120:
-
-            st.success(
-                "✅ Student will Graduate"
-            )
-
-        else:
-
-            st.error(
-                "⚠️ Student Needs Support"
-            )
+print(df.columns.tolist())
