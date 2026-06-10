@@ -97,7 +97,7 @@ models = {
 results = {}
 
 for name, model in models.items():
-    st.write(X.dtypes)
+    
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     accuracy = accuracy_score(
