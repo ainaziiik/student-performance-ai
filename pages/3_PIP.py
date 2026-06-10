@@ -1,20 +1,17 @@
 import streamlit as st
 import pandas as pd
 
-st.title("🎓 PIP Dataset Analysis")
+st.title("🎓 PIP — Университетский датасет")
 
-df = pd.read_csv(
-    "Student performance (Polytechnic Institute of Portalegre).csv"
+uploaded_file = st.file_uploader(
+    "Загрузите PIP CSV",
+    type="csv"
 )
 
-st.subheader("Первые строки датасета")
-st.dataframe(df.head())
+if uploaded_file is not None:
 
-st.subheader("Размер датасета")
-st.write(df.shape)
+    df = pd.read_csv(uploaded_file)
 
-st.subheader("Названия столбцов")
-st.write(df.columns.tolist())
+    st.success("Файл загружен")
 
-st.subheader("Типы данных")
-st.write(df.dtypes)
+    st.dataframe(df.head())
