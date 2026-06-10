@@ -21,15 +21,10 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
+    data = df.copy()
     data = data.apply(pd.to_numeric, errors="coerce")
     data = data.replace([np.inf, -np.inf], np.nan)
     data = data.fillna(0)
-    st.success("Файл загружен")
-    st.dataframe(df.head())
-    
-    # 👇 ВСЁ ДАЛЬШЕ ТОЛЬКО ВНУТРИ БЛОКА
-
-    data = df.copy()
 
     for col in data.columns:
         if data[col].dtype == "object":
