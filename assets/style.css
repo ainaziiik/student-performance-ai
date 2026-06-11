@@ -634,3 +634,105 @@ section[data-testid="stSidebar"] * {
     box-shadow:
         0 0 30px rgba(239,68,68,.3);
 }
+
+/* =========================
+   COMPARISON PAGE
+========================= */
+
+.compare-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.compare-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 0 30px rgba(168,85,247,.4);
+}
+
+
+/* =========================
+   WINNER CARD
+========================= */
+
+.winner-card{
+
+    text-align:center;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(168,85,247,.15),
+            rgba(124,58,237,.05)
+        );
+
+    border:1px solid rgba(168,85,247,.35);
+
+    margin-top:15px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,.2);
+}
+
+.winner-title{
+
+    font-size:18px;
+
+    color:#d8b4fe;
+
+    margin-bottom:10px;
+}
+
+.winner-model{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:white;
+}
+
+
+/* =========================
+   RESEARCH BLOCK
+========================= */
+
+.research-card{
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    padding:25px;
+
+    margin-top:25px;
+
+    line-height:1.8;
+}
