@@ -191,7 +191,7 @@ if uploaded_file is not None:
 
     st.markdown(
         f"""
-        ### Эң мыкты модельЭ
+        ### Эң мыкты модель
     
         **{best_model}**
     
