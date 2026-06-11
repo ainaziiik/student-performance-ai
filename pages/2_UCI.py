@@ -41,7 +41,12 @@ if uploaded_file is not None:
     )
     st.subheader("Предпросмотр данных")
     st.dataframe(df.head(10))
-st.subheader("📊 Корреляционная тепловая карта")
+    
+st.markdown("""
+<div class="section-title">
+📊 Корреляционная тепловая карта
+</div>
+""", unsafe_allow_html=True)
 
 numeric_df = df.select_dtypes(include=[np.number])
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -51,7 +56,12 @@ sns.heatmap(
     ax=ax
 )
 st.pyplot(fig)
-st.subheader("🤖 Сравнение моделей машинного обучения")
+
+st.markdown("""
+<div class="section-title">
+🤖 Сравнение моделей машинного обучения
+</div>
+""", unsafe_allow_html=True)
 
 data_clean = df.copy()
 for col in data_clean.columns:
@@ -146,7 +156,11 @@ st.markdown(
     """
 )
 
-st.subheader("📉 Confusion Matrix (лучшая модель)")
+st.markdown("""
+<div class="section-title">
+📉 Confusion Matrix (лучшая модель)
+</div>
+""", unsafe_allow_html=True)
 
 cm = confusion_matrix(y_test, best_preds)
 
