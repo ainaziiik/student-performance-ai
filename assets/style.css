@@ -19,14 +19,16 @@
 ========================= */
 
 h1 {
+
     color: white !important;
+
     text-align: center;
+
     font-size: 3rem !important;
+
     font-weight: 800 !important;
 
-    text-shadow:
-        0 0 10px rgba(168,85,247,.7),
-        0 0 30px rgba(168,85,247,.5);
+    animation: glow 3s ease-in-out infinite;
 }
 
 h2,h3,h4 {
@@ -269,4 +271,76 @@ section[data-testid="stSidebar"] * {
 .glass-card ul {
 
     line-height: 2;
+}
+/* =========================
+   GLOW ANIMATION
+========================= */
+
+@keyframes glow {
+
+    0% {
+
+        text-shadow:
+            0 0 10px rgba(168,85,247,.5),
+            0 0 20px rgba(168,85,247,.4),
+            0 0 40px rgba(168,85,247,.3);
+    }
+
+    50% {
+
+        text-shadow:
+            0 0 20px rgba(168,85,247,.9),
+            0 0 40px rgba(168,85,247,.8),
+            0 0 80px rgba(168,85,247,.7);
+    }
+
+    100% {
+
+        text-shadow:
+            0 0 10px rgba(168,85,247,.5),
+            0 0 20px rgba(168,85,247,.4),
+            0 0 40px rgba(168,85,247,.3);
+    }
+}
+
+.glow-line {
+
+    width: 250px;
+
+    height: 4px;
+
+    margin: 0 auto 30px auto;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #a855f7,
+        transparent
+    );
+
+    box-shadow:
+        0 0 20px #a855f7,
+        0 0 40px #a855f7;
+
+    animation: pulseLine 2s infinite;
+}
+
+@keyframes pulseLine {
+
+    0% {
+        opacity: .5;
+        width: 200px;
+    }
+
+    50% {
+        opacity: 1;
+        width: 300px;
+    }
+
+    100% {
+        opacity: .5;
+        width: 200px;
+    }
 }
