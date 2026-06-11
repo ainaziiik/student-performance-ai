@@ -1,62 +1,223 @@
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-* {
-    animation: fadeIn 0.4s ease-in-out;
-}
+/* =========================
+   BACKGROUND
+========================= */
 
 .stApp {
-    background:
-        radial-gradient(circle at top left, #7c3aed 0%, transparent 30%),
-        radial-gradient(circle at bottom right, #a855f7 0%, transparent 30%),
-        linear-gradient(135deg, #0f0f1a, #151528, #1e1b4b);
-
-    color: white;
-}
-
-html,
-body,
-[class*="css"] {
-    color: white !important;
-}
-
-div[data-testid="metric-container"] {
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 15px;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
-}
-
-div[data-testid="metric-container"]:hover {
-    transform: translateY(-4px);
-}
-
-.stButton > button {
     background: linear-gradient(
         135deg,
-        #7c3aed,
-        #c084fc
-    ) !important;
+        #0a0614,
+        #130826,
+        #241046,
+        #34175e
+    );
 
+    background-attachment: fixed;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+h1 {
     color: white !important;
+    text-align: center;
+    font-size: 3rem !important;
+    font-weight: 800 !important;
 
-    border-radius: 15px !important;
+    text-shadow:
+        0 0 10px rgba(168,85,247,.7),
+        0 0 30px rgba(168,85,247,.5);
+}
 
-    border: none !important;
+h2,h3,h4 {
+    color: #f5f3ff !important;
+}
 
-    transition: all 0.3s ease !important;
+p, li, label, span {
+    color: #e9d5ff !important;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+section[data-testid="stSidebar"] {
+    background: rgba(15,10,35,.85);
+
+    backdrop-filter: blur(20px);
+
+    border-right: 1px solid rgba(255,255,255,.1);
+}
+
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+/* =========================
+   METRICS
+========================= */
+
+[data-testid="metric-container"] {
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 24px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,.3);
+
+    transition: .3s;
+}
+
+[data-testid="metric-container"]:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,.4);
+}
+
+/* =========================
+   DATAFRAMES
+========================= */
+
+[data-testid="stDataFrame"] {
+
+    background: rgba(255,255,255,.06);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 24px;
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    padding: 10px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.stButton > button {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 14px;
+
+    font-weight: 700;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #9333ea
+        );
+
+    box-shadow:
+        0 0 20px rgba(147,51,234,.4);
+
+    transition: .3s;
 }
 
 .stButton > button:hover {
-    transform: scale(1.05);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 35px rgba(168,85,247,.8);
+}
+
+/* =========================
+   SELECTBOX
+========================= */
+
+.stSelectbox > div > div {
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(15px);
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+/* =========================
+   SLIDERS
+========================= */
+
+.stSlider {
+
+    padding-top: 10px;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+
+.stSuccess {
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.stError {
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+}
+
+/* =========================
+   WARNING
+========================= */
+
+.stWarning {
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+}
+
+/* =========================
+   EXPANDERS
+========================= */
+
+.streamlit-expanderHeader {
+
+    background: rgba(255,255,255,.08);
+
+    border-radius: 16px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #7c3aed;
+
+    border-radius: 20px;
 }
