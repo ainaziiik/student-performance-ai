@@ -16,6 +16,13 @@ load_css()
 
 st.title("📊 Student Performance AI System")
 
+st.markdown(
+    """
+    <div class="glow-line"></div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown("""
 <div class="glass-card">
 
