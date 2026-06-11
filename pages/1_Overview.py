@@ -14,6 +14,12 @@ def load_css():
 
 load_css()
 
+st.markdown("""
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
+<div class="bg-blur blur3"></div>
+""", unsafe_allow_html=True)
+
 st.title("📊 Student Performance AI System")
 
 st.markdown(
