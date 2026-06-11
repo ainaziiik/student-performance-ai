@@ -56,28 +56,28 @@ best_pip = comparison_df.loc[
 st.markdown(f"""
 <div class="winner-card">
 <div class="winner-title">
-🏫 Best Model for UCI
+UCI үчүн мыкты модель
 </div>
 
 <div class="winner-model">
 {best_uci['Модель']}
 </div>
 
-Accuracy: {best_uci['UCI']}%
+Тактыгы: {best_uci['UCI']}%
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown(f"""
 <div class="winner-card">
 <div class="winner-title">
-🎓 Best Model for PIP
+PI үчүн мыкты модель
 </div>
 
 <div class="winner-model">
 {best_pip['Модель']}
 </div>
 
-Accuracy: {best_pip['PIP']}%
+Тактыгы: {best_pip['PIP']}%
 </div>
 """, unsafe_allow_html=True)
 fig, ax = plt.subplots(figsize=(10,5))
@@ -104,7 +104,7 @@ ax.set_xticklabels(
     rotation=20
 )
 
-ax.set_ylabel("Accuracy (%)")
+ax.set_ylabel("Тактыгы (%)")
 ax.legend()
 
 st.pyplot(fig)
@@ -112,33 +112,28 @@ st.pyplot(fig)
 st.markdown(f"""
 <div class="research-card">
 
-<h3>📖 Research Conclusion</h3>
+<h3>Изилдөө корутундусу</h3>
 
 <ul>
 
 <li>
-For the school dataset (UCI), the highest accuracy was achieved by
-<b>{best_uci['Модель']}</b>
-with a result of
-<b>{best_uci['UCI']}%</b>.
+Мектеп маалыматтар топтому  (UCI) үчүн эң жогорку тактыкка
+<b>{best_uci['Модель']}</b> 
+<b>{best_uci['UCI']}%</b> натыйжасы менен ээ болду.
 </li>
 
 <li>
-For the university dataset (PIP), the highest accuracy was achieved by
+Университеттин маалымат топтому үчүн (PIP) үчүн эң жогорку тактыкка
 <b>{best_pip['Модель']}</b>
-with a result of
-<b>{best_pip['PIP']}%</b>.
+<b>{best_pip['PIP']}%</b> натыйжасы менен ээ болду.
 </li>
 
-<li>
-The comparison demonstrates that different educational environments
-require different machine learning approaches.
-</li>
-
-<li>
-The developed system can be used to identify students at academic risk
-and support decision-making in educational institutions.
-</li>
+<p>
+Салыштыруу көрсөткөндөй, ар кандай билим берүү чөйрөлөрү машинаны үйрөнүүнүн 
+ар кандай ыкмаларын талап кылат. 
+Иштелип чыккан система тобокелдик тобундагы студенттерди аныктоо 
+жана билим берүү мекемелеринде чечим кабыл алууну жеңилдетүү үчүн колдонулушу мүмкүн.
+</p>
 
 </ul>
 
