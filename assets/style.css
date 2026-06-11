@@ -539,3 +539,98 @@ section[data-testid="stSidebar"] * {
         0 8px 30px rgba(0,0,0,.25);
 }
 
+/* =========================
+   PREDICTOR CARDS
+========================= */
+
+.predict-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    padding:30px;
+
+    margin-top:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.predict-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 0 30px rgba(168,85,247,.45);
+}
+
+/* =========================
+   PREDICT RESULT
+========================= */
+
+.result-card{
+
+    text-align:center;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    margin-top:25px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.result-success{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,.25),
+            rgba(34,197,94,.08)
+        );
+
+    box-shadow:
+        0 0 30px rgba(34,197,94,.3);
+}
+
+.result-warning{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,158,11,.25),
+            rgba(245,158,11,.08)
+        );
+
+    box-shadow:
+        0 0 30px rgba(245,158,11,.3);
+}
+
+.result-danger{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239,68,68,.25),
+            rgba(239,68,68,.08)
+        );
+
+    box-shadow:
+        0 0 30px rgba(239,68,68,.3);
+}
