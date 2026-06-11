@@ -6,12 +6,16 @@ from sklearn.preprocessing import LabelEncoder
 
 st.title("🔮 Student Performance Predictor")
 
-# ==========================
-# Загрузка и обучение модели
-# ==========================
+dataset = st.selectbox(
+    "Выберите датасет",
+    [
+        "UCI School",
+        "PIP University"
+    ]
+)
 
 df = pd.read_csv(
-    "Student performance (Polytechnic Institute of Portalegre)(1).csv"
+    "Student performance (Polytechnic Institute of Portalegre).csv"
 )
 
 data_clean = df.copy()
@@ -35,9 +39,7 @@ model = RandomForestClassifier(
 
 model.fit(X, y)
 
-# ==========================
-# Интерфейс
-# ==========================
+
 
 st.subheader("🎓 Введите данные студента")
 
