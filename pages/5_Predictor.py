@@ -54,12 +54,12 @@ if dataset == "PIP ЖОЖ студенттери":
 
     debtor = st.selectbox(
         "Кредит",
-        ["Жок", "Ооба"]
+        ["Жок", "Бар"]
     )
 
     tuition = st.selectbox(
-        "Учурдагы окуу акысы",
-        ["Жок", "Ооба"]
+        "Учурдагы окуу төлөмүндүк карызы",
+        ["Жок", "Бар"]
     )
 
     if st.button("Болжолдоо!"):
@@ -69,10 +69,10 @@ if dataset == "PIP ЖОЖ студенттери":
         if scholarship == "Ооба":
             score += 20
 
-        if tuition == "Ооба":
+        if tuition == "Бар":
             score += 20
 
-        if debtor == "Ооба":
+        if debtor == "Бар":
             score -= 40
 
         if score >= 130:
