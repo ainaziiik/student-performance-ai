@@ -25,15 +25,15 @@ def load_css():
 
 load_css()
 
-st.title("🎓 PIP Student Performance Dataset")
+st.title("PIP ЖОЖдогу студенттердин жетишкендиктери жөнүндө маалыматтар топтому")
 st.markdown("""
 <div class="page-banner">
-🤖 Machine Learning Analysis Dashboard
+Машиналык үйрөнүү анализинин панели
 </div>
 """, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
-    "Загрузите PIP CSV файл",
+    "PIP CSV файлды жүктөңүз",
     type="csv"
 )
 
@@ -41,35 +41,31 @@ if uploaded_file is not None:
 
     df = pd.read_csv(uploaded_file)
 
-    st.success("Файл успешно загружен")
+    st.success("Файл ийгиликтүү жүктөлдү!")
 
     col1, col2, col3 = st.columns(3)
 
     col1.metric(
-        "Количество записей",
+        "Студенттердин саны",
         len(df)
     )
 
     col2.metric(
-        "Количество признаков",
+        "Белгилердин саны",
         len(df.columns)
     )
 
     col3.metric(
-        "Средний возраст",
+        "Орточо  жашы",
         round(df["Age at enrollment"].mean(), 1)
     )
 
-    st.subheader("Предпросмотр данных")
+    st.subheader("Маалыматтарды алдын ала көрүү")
     st.dataframe(df.head(10))
-
-    # =====================
-    # Heatmap
-    # =====================
 
     st.markdown("""
     <div class="section-title">
-    📊 Корреляционная тепловая карта
+    Корреляциялык жылуулук картасы
     </div>
     """, unsafe_allow_html=True)
 
@@ -85,11 +81,7 @@ if uploaded_file is not None:
 
     st.pyplot(fig)
 
-    # =====================
-    # Подготовка данных
-    # =====================
-
-    st.subheader("🤖 Сравнение моделей машинного обучения")
+    st.subheader("Моделдерди салыштыруу")
 
     data_clean = df.copy()
 
@@ -183,7 +175,7 @@ if uploaded_file is not None:
         "Модель":
             results.keys(),
 
-        "Точность": [
+        "Тактыгы": [
             f"{acc:.2%}"
             for acc in results.values()
         ]
@@ -192,32 +184,28 @@ if uploaded_file is not None:
     st.dataframe(results_df)
 
     st.success(
-        f"🏆 Лучшая модель: "
+        f"Эң мыкты модель: "
         f"{best_model_name} "
         f"({results[best_model_name]:.2%})"
     )
 
     st.markdown(
         f"""
-        ### 🏆 Лучшая модель
+        ### Эң мыкты модельЭ
     
         **{best_model}**
     
-        Точность модели: **{results[best_model_name]:.2%}**
+        Моделдин тактыгы: **{results[best_model_name]:.2%}**
     
-        Данная модель показала наилучшие результаты
-        на данном наборе данных и была выбрана как
-        наиболее эффективный алгоритм прогнозирования.
+        Бул модель PIP маалымат топтомунда 
+        эң жакшы натыйжаларды көрсөттү жана эң эффективдүү 
+        болжолдоо алгоритми катары тандалды.
         """
     )
 
-    # =====================
-    # Confusion Matrix
-    # =====================
-
     st.markdown("""
     <div class="section-title">
-    🤖 Сравнение моделей машинного обучения
+    Дал келүүлөр матрицасы
     </div>
     """, unsafe_allow_html=True)
 
@@ -236,7 +224,7 @@ if uploaded_file is not None:
         ax=ax
     )
 
-    ax.set_xlabel("Predicted")
-    ax.set_ylabel("Actual")
+    ax.set_xlabel("Болжолдуу")
+    ax.set_ylabel("Чынында")
 
     st.pyplot(fig)
