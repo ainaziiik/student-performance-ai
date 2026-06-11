@@ -16,6 +16,11 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
 st.title("🏫 UCI Student Performance Dataset")
+st.markdown("""
+<div class="page-banner">
+🤖 Machine Learning Analysis Dashboard
+</div>
+""", unsafe_allow_html=True)
 uploaded_file = st.file_uploader(
     "Загрузите UCI CSV файл",
     type="csv"
