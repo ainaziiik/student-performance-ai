@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 
 st.title("⚖️ Сравнение UCI и PIP")
 
+st.markdown("""
+<div class="page-banner">
+⚖️ Comparative Analysis of School and University Datasets
+</div>
+""", unsafe_allow_html=True)
+
 comparison_df = pd.DataFrame({
     "Модель": [
         "Logistic Regression",
@@ -38,18 +44,33 @@ best_pip = comparison_df.loc[
     comparison_df["PIP"].idxmax()
 ]
 
-st.success(
-    f"🏫 Лучшая модель для UCI: "
-    f"{best_uci['Модель']} "
-    f"({best_uci['UCI']}%)"
-)
+st.markdown(f"""
+<div class="winner-card">
+<div class="winner-title">
+🏫 Best Model for UCI
+</div>
 
-st.success(
-    f"🎓 Лучшая модель для PIP: "
-    f"{best_pip['Модель']} "
-    f"({best_pip['PIP']}%)"
-)
+<div class="winner-model">
+{best_uci['Модель']}
+</div>
 
+Accuracy: {best_uci['UCI']}%
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown(f"""
+<div class="winner-card">
+<div class="winner-title">
+🎓 Best Model for PIP
+</div>
+
+<div class="winner-model">
+{best_pip['Модель']}
+</div>
+
+Accuracy: {best_pip['PIP']}%
+</div>
+""", unsafe_allow_html=True)
 fig, ax = plt.subplots(figsize=(10,5))
 
 x = range(len(comparison_df))
@@ -78,3 +99,39 @@ ax.set_ylabel("Accuracy (%)")
 ax.legend()
 
 st.pyplot(fig)
+
+st.markdown(f"""
+<div class="research-card">
+
+<h3>📖 Research Conclusion</h3>
+
+<ul>
+
+<li>
+For the school dataset (UCI), the highest accuracy was achieved by
+<b>{best_uci['Модель']}</b>
+with a result of
+<b>{best_uci['UCI']}%</b>.
+</li>
+
+<li>
+For the university dataset (PIP), the highest accuracy was achieved by
+<b>{best_pip['Модель']}</b>
+with a result of
+<b>{best_pip['PIP']}%</b>.
+</li>
+
+<li>
+The comparison demonstrates that different educational environments
+require different machine learning approaches.
+</li>
+
+<li>
+The developed system can be used to identify students at academic risk
+and support decision-making in educational institutions.
+</li>
+
+</ul>
+
+</div>
+""", unsafe_allow_html=True)
