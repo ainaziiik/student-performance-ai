@@ -24,14 +24,14 @@ def load_css():
 
 load_css()
 
-st.title("🏫 UCI Student Performance Dataset")
+st.title("UCI мектеп окуучуларынын жетишкендиктери жөнүндө маалымат топтому")
 st.markdown("""
 <div class="page-banner">
-🤖 Machine Learning Analysis Dashboard
+Машиналык үйрөнүү анализинин панели
 </div>
 """, unsafe_allow_html=True)
 uploaded_file = st.file_uploader(
-    "Загрузите UCI CSV файл",
+    "UCI CSV файлды жүктөңүз",
     type="csv"
 )
 if uploaded_file is not None:
@@ -39,26 +39,26 @@ if uploaded_file is not None:
         uploaded_file,
         sep=";"
     )
-    st.success("Файл успешно загружен")
+    st.success("Файл ийгиликтүү жүктөлдү!")
     col1, col2, col3 = st.columns(3)
     col1.metric(
-        "Количество записей",
+        "Окуучулардын саны",
         len(df)
     )
     col2.metric(
-        "Количество признаков",
+        "Белгилердин саны",
         len(df.columns)
     )
     col3.metric(
-        "Средний балл G3",
+        "Орточо балл G3",
         round(df["G3"].mean(), 2)
     )
-    st.subheader("Предпросмотр данных")
+    st.subheader("Маалыматтарды алдын ала көрүү")
     st.dataframe(df.head(10))
     
     st.markdown("""
     <div class="section-title">
-    📊 Корреляционная тепловая карта
+    Корреляциялык жылуулук картасы
     </div>
     """, unsafe_allow_html=True)
     
@@ -73,7 +73,7 @@ if uploaded_file is not None:
     
     st.markdown("""
     <div class="section-title">
-    🤖 Сравнение моделей машинного обучения
+    Моделдерди салыштыруу
     </div>
     """, unsafe_allow_html=True)
     
@@ -138,7 +138,7 @@ if uploaded_file is not None:
     
     results_df = pd.DataFrame({
         "Модель": results.keys(),
-        "Точность": [
+        "Тактыгы": [
             f"{acc:.2%}"
             for acc in results.values()
         ]
@@ -158,21 +158,21 @@ if uploaded_file is not None:
     
     st.markdown(
         f"""
-        ### 🏆 Лучшая модель
+        ### Эң мыкты модель
     
         **{best_model}**
     
-        Точность модели: **{results[best_model]:.2%}**
+        Моделдин тактыгы: **{results[best_model]:.2%}**
     
-        Данная модель показала наилучшие результаты
-        на данном наборе данных и была выбрана как
-        наиболее эффективный алгоритм прогнозирования.
+        Бул модель UCI маалымат топтомунда 
+        эң жакшы натыйжаларды көрсөттү жана эң эффективдүү 
+        болжолдоо алгоритми катары тандалды.
         """
     )
     
     st.markdown("""
     <div class="section-title">
-    📉 Confusion Matrix (лучшая модель)
+    Дал келүүлөр матрицасы
     </div>
     """, unsafe_allow_html=True)
     
