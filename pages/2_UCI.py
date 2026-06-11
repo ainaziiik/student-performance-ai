@@ -15,6 +15,15 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
+def load_css():
+    with open("assets/style.css") as f:
+        st.markdown(
+            f"<style>{f.read()}</style>",
+            unsafe_allow_html=True
+        )
+
+load_css()
+
 st.title("🏫 UCI Student Performance Dataset")
 st.markdown("""
 <div class="page-banner">
