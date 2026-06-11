@@ -187,7 +187,7 @@ if uploaded_file is not None:
         ax=ax
     )
     
-    ax.set_xlabel("Predicted")
-    ax.set_ylabel("Actual")
+    ax.set_xlabel("Болжолдуу")
+    ax.set_ylabel("Чынында")
     
     st.pyplot(fig)
