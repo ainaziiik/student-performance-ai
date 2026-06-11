@@ -179,10 +179,9 @@ if uploaded_file is not None:
         f"({results[best_model_name]:.2%})"
     )
 
-    st.markdown(
+st.markdown(
     f"""
     ### 🏆 Лучшая модель
-    )
 
     **{best_model}**
 
@@ -192,7 +191,7 @@ if uploaded_file is not None:
     на данном наборе данных и была выбрана как
     наиболее эффективный алгоритм прогнозирования.
     """
-    )
+)
 
     # =====================
     # Confusion Matrix
