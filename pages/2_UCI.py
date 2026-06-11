@@ -132,6 +132,20 @@ st.success(
     f"({results[best_model]:.2%})"
 )
 
+st.markdown(
+    f"""
+    ### 🏆 Лучшая модель
+
+    **{best_model}**
+
+    Точность модели: **{results[best_model]:.2%}**
+
+    Данная модель показала наилучшие результаты
+    на данном наборе данных и была выбрана как
+    наиболее эффективный алгоритм прогнозирования.
+    """
+)
+
 st.subheader("📉 Confusion Matrix (лучшая модель)")
 
 cm = confusion_matrix(y_test, best_preds)
