@@ -152,7 +152,7 @@ if uploaded_file is not None:
     )
     
     st.success(
-        f"🏆 Лучшая модель: {best_model} "
+        f"Эң мыкты модель: {best_model} "
         f"({results[best_model]:.2%})"
     )
     
