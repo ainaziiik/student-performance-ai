@@ -2,6 +2,12 @@ import streamlit as st
 
 st.title("🔮 Student Performance Predictor")
 
+st.markdown("""
+<div class="page-banner">
+🔮 AI Prediction System
+</div>
+""", unsafe_allow_html=True)
+
 dataset = st.selectbox(
     "Выберите датасет",
     [
@@ -16,7 +22,11 @@ dataset = st.selectbox(
 
 if dataset == "PIP University":
 
-    st.subheader("🎓 Параметры студента")
+    st.markdown("""
+    <div class="section-title">
+    🎓 University Student Parameters
+    </div>
+    """, unsafe_allow_html=True)
 
     age = st.slider(
         "Age at enrollment",
@@ -74,7 +84,11 @@ if dataset == "PIP University":
 
 elif dataset == "UCI School":
 
-    st.subheader("🏫 Параметры школьника")
+    st.markdown("""
+    <div class="section-title">
+    🏫 School Student Parameters
+    </div>
+    """, unsafe_allow_html=True)
 
     age = st.slider(
         "Возраст",
