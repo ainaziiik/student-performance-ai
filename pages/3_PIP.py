@@ -53,7 +53,11 @@ if uploaded_file is not None:
     # Heatmap
     # =====================
 
-    st.subheader("📊 Корреляционная тепловая карта")
+    st.markdown("""
+    <div class="section-title">
+    📊 Корреляционная тепловая карта
+    </div>
+    """, unsafe_allow_html=True)
 
     numeric_df = df.select_dtypes(include=[np.number])
 
@@ -197,9 +201,11 @@ if uploaded_file is not None:
     # Confusion Matrix
     # =====================
 
-    st.subheader(
-        "📉 Confusion Matrix (лучшая модель)"
-    )
+    st.markdown("""
+    <div class="section-title">
+    🤖 Сравнение моделей машинного обучения
+    </div>
+    """, unsafe_allow_html=True)
 
     cm = confusion_matrix(
         y_test,
