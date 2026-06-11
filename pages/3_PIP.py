@@ -182,6 +182,7 @@ if uploaded_file is not None:
     st.markdown(
     f"""
     ### 🏆 Лучшая модель
+    )
 
     **{best_model}**
 
