@@ -8,132 +8,125 @@ def load_css():
         )
 
 load_css()
-st.title("🔮 Student Performance Predictor")
+st.title("Окуучулардын жетишкендиктерин болжолдуу аныктоо")
 
 st.markdown("""
 <div class="page-banner">
-🔮 AI Prediction System
+ЖИ алдын ала айтуу системасы 
 </div>
 """, unsafe_allow_html=True)
 
 dataset = st.selectbox(
-    "Выберите датасет",
+    "Датасет тандаңыз",
     [
-        "UCI School",
-        "PIP University"
+        "UCI Мектеп окуучулары",
+        "PIP ЖОЖ студенттери"
     ]
 )
 
-# =====================
-# PIP
-# =====================
 
-if dataset == "PIP University":
+if dataset == "PIP ЖОЖ студенттери":
 
     st.markdown("""
     <div class="section-title">
-    🎓 University Student Parameters
+    ЖОЖдун студенттеринин параметрлери
     </div>
     """, unsafe_allow_html=True)
 
     age = st.slider(
-        "Age at enrollment",
+        "Окууга кирүүдөгү курагы",
         17,
         70,
         20
     )
 
     admission_grade = st.slider(
-        "Admission grade",
+        "Өтүү балы",
         0,
         200,
         120
     )
 
     scholarship = st.selectbox(
-        "Scholarship holder",
-        ["No", "Yes"]
+        "Стипендиат",
+        ["Жок", "Ооба"]
     )
 
     debtor = st.selectbox(
-        "Debtor",
-        ["No", "Yes"]
+        "Кредит",
+        ["Жок", "Ооба"]
     )
 
     tuition = st.selectbox(
-        "Tuition fees up to date",
-        ["No", "Yes"]
+        "Учурдагы окуу акысы",
+        ["Жок", "Ооба"]
     )
 
-    if st.button("🔮 Predict PIP"):
+    if st.button("Болжолдоо!"):
 
         score = admission_grade
 
-        if scholarship == "Yes":
+        if scholarship == "Ооба":
             score += 20
 
-        if tuition == "Yes":
+        if tuition == "Ооба":
             score += 20
 
-        if debtor == "Yes":
+        if debtor == "Ооба":
             score -= 40
 
         if score >= 130:
-            st.success("✅ Student is likely to Graduate")
+            st.success("✅ Студент окуусун ийгиликтүү бүтүшү ыктымал!")
         elif score >= 90:
-            st.warning("📚 Student may remain Enrolled")
+            st.warning("Студент катталган бойдон кала алат")
         else:
-            st.error("⚠️ Student is at risk of Dropout")
+            st.error("⚠️ Студент окуудан чыгаруу коркунучунда!")
 
 
-# =====================
-# UCI
-# =====================
-
-elif dataset == "UCI School":
+elif dataset == "UCI Мектеп окуучулары":
 
     st.markdown("""
     <div class="section-title">
-    🏫 School Student Parameters
+    UCI Мектеп окуучуларынын параметрлери
     </div>
     """, unsafe_allow_html=True)
 
     age = st.slider(
-        "Возраст",
+        "Жашы",
         15,
         22,
         17
     )
 
     studytime = st.slider(
-        "Время обучения (часов)",
+        "Окуу убактысы (саат)",
         1,
         10,
         4
     )
 
     absences = st.slider(
-        "Количество пропусков",
+        "Сабак калтырууларынын саны",
         0,
         100,
         5
     )
 
     freetime = st.slider(
-        "Свободное время",
+        "Бош убактысы",
         1,
         5,
         3
     )
 
     parent_education = st.slider(
-        "Образование родителей",
+        "Ата-энесинин билими",
         0,
         4,
         2
     )
 
-    if st.button("🔮 Predict UCI"):
+    if st.button("Болжолдоо!"):
 
         score = (
             studytime * 15
@@ -143,6 +136,6 @@ elif dataset == "UCI School":
         )
 
         if score >= 50:
-            st.success("✅ Student will Pass")
+            st.success("✅ Окуучу ийгиликтүү өтүшү мүмкүн!")
         else:
-            st.error("⚠️ Student Needs Support")
+            st.error("⚠️ Окуучуга кошумча даярдык керек болушу мүмкүн!")
