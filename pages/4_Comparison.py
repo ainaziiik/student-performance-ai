@@ -11,11 +11,11 @@ def load_css():
 
 load_css()
 
-st.title("⚖️ Сравнение UCI и PIP")
+st.title("UCI жана PIP датасеттерди салыштыруу")
 
 st.markdown("""
 <div class="page-banner">
-⚖️ Comparative Analysis of School and University Datasets
+Мектеп жана университеттин маалымат топтомун салыштырмалуу талдоо
 </div>
 """, unsafe_allow_html=True)
 
@@ -27,14 +27,14 @@ comparison_df = pd.DataFrame({
         "KNN",
         "Naive Bayes"
     ],
-    "UCI": [
+    "Мектеп": [
         74.68,
         72.15,
         59.49,
         65.82,
         72.15
     ],
-    "PIP": [
+    "ЖОЖ": [
         73.22,
         76.05,
         67.68,
