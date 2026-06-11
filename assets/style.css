@@ -443,3 +443,98 @@ section[data-testid="stSidebar"] * {
 
     color:white;
 }
+/* =========================
+   SECTION TITLES
+========================= */
+
+.section-title{
+
+    margin-top:30px;
+
+    margin-bottom:20px;
+
+    padding:18px 25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.section-title:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,.4);
+}
+
+
+/* =========================
+   PAGE BANNER
+========================= */
+
+.page-banner{
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    border-radius:25px;
+
+    background:rgba(168,85,247,.12);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(168,85,247,.35);
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,.25);
+}
+
+
+/* =========================
+   GLASS CHARTS
+========================= */
+
+.glass-chart{
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    margin-top:15px;
+
+    margin-bottom:25px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25);
+}
