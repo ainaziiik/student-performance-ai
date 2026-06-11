@@ -56,138 +56,138 @@ if uploaded_file is not None:
     st.subheader("Предпросмотр данных")
     st.dataframe(df.head(10))
     
-st.markdown("""
-<div class="section-title">
-📊 Корреляционная тепловая карта
-</div>
-""", unsafe_allow_html=True)
-
-numeric_df = df.select_dtypes(include=[np.number])
-fig, ax = plt.subplots(figsize=(12, 6))
-sns.heatmap(
-    numeric_df.corr(),
-    cmap="magma",
-    ax=ax
-)
-st.pyplot(fig)
-
-st.markdown("""
-<div class="section-title">
-🤖 Сравнение моделей машинного обучения
-</div>
-""", unsafe_allow_html=True)
-
-data_clean = df.copy()
-for col in data_clean.columns:
-    if data_clean[col].dtype == "object":
-        le = LabelEncoder()
-        data_clean[col] = le.fit_transform(
-            data_clean[col].astype(str)
-        )
-data_clean = data_clean.fillna(0)
-
-data_clean["target"] = data_clean["G3"].apply(
-    lambda x: 1 if x >= 10 else 0
-)
-
-X = data_clean.drop(
-    ["G1", "G2", "G3", "target"],
-    axis=1,
-    errors="ignore"
-)
-y = data_clean["target"]
-
-X = X.apply(
-    pd.to_numeric,
-    errors="coerce"
-)
-
-X = X.fillna(0)
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42
-)
-
-models = {
-    "Logistic Regression": LogisticRegression(max_iter=1000),
-    "Random Forest": RandomForestClassifier(random_state=42),
-    "Decision Tree": DecisionTreeClassifier(random_state=42),
-    "KNN": KNeighborsClassifier(),
-    "Naive Bayes": GaussianNB()
-}
-
-results = {}
-
-for name, model in models.items():
- 
-    model.fit(X_train, y_train)
-    preds = model.predict(X_test)
-    accuracy = accuracy_score(
-        y_test,
-        preds
+    st.markdown("""
+    <div class="section-title">
+    📊 Корреляционная тепловая карта
+    </div>
+    """, unsafe_allow_html=True)
+    
+    numeric_df = df.select_dtypes(include=[np.number])
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.heatmap(
+        numeric_df.corr(),
+        cmap="magma",
+        ax=ax
     )
-    results[name] = accuracy
-
-best_model_name = max(results, key=results.get)
-best_model = models[best_model_name]
-
-best_model.fit(X_train, y_train)
-best_preds = best_model.predict(X_test)
-
-results_df = pd.DataFrame({
-    "Модель": results.keys(),
-    "Точность": [
-        f"{acc:.2%}"
-        for acc in results.values()
-    ]
-})
-
-st.dataframe(results_df)
-
-best_model = max(
-    results,
-    key=results.get
-)
-
-st.success(
-    f"🏆 Лучшая модель: {best_model} "
-    f"({results[best_model]:.2%})"
-)
-
-st.markdown(
-    f"""
-    ### 🏆 Лучшая модель
-
-    **{best_model}**
-
-    Точность модели: **{results[best_model]:.2%}**
-
-    Данная модель показала наилучшие результаты
-    на данном наборе данных и была выбрана как
-    наиболее эффективный алгоритм прогнозирования.
-    """
-)
-
-st.markdown("""
-<div class="section-title">
-📉 Confusion Matrix (лучшая модель)
-</div>
-""", unsafe_allow_html=True)
-
-cm = confusion_matrix(y_test, best_preds)
-
-fig, ax = plt.subplots()
-sns.heatmap(
-    cm,
-    annot=True,
-    fmt="d",
-    cmap="Purples",
-    ax=ax
-)
-
-ax.set_xlabel("Predicted")
-ax.set_ylabel("Actual")
-
-st.pyplot(fig)
+    st.pyplot(fig)
+    
+    st.markdown("""
+    <div class="section-title">
+    🤖 Сравнение моделей машинного обучения
+    </div>
+    """, unsafe_allow_html=True)
+    
+    data_clean = df.copy()
+    for col in data_clean.columns:
+        if data_clean[col].dtype == "object":
+            le = LabelEncoder()
+            data_clean[col] = le.fit_transform(
+                data_clean[col].astype(str)
+            )
+    data_clean = data_clean.fillna(0)
+    
+    data_clean["target"] = data_clean["G3"].apply(
+        lambda x: 1 if x >= 10 else 0
+    )
+    
+    X = data_clean.drop(
+        ["G1", "G2", "G3", "target"],
+        axis=1,
+        errors="ignore"
+    )
+    y = data_clean["target"]
+    
+    X = X.apply(
+        pd.to_numeric,
+        errors="coerce"
+    )
+    
+    X = X.fillna(0)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X,
+        y,
+        test_size=0.2,
+        random_state=42
+    )
+    
+    models = {
+        "Logistic Regression": LogisticRegression(max_iter=1000),
+        "Random Forest": RandomForestClassifier(random_state=42),
+        "Decision Tree": DecisionTreeClassifier(random_state=42),
+        "KNN": KNeighborsClassifier(),
+        "Naive Bayes": GaussianNB()
+    }
+    
+    results = {}
+    
+    for name, model in models.items():
+     
+        model.fit(X_train, y_train)
+        preds = model.predict(X_test)
+        accuracy = accuracy_score(
+            y_test,
+            preds
+        )
+        results[name] = accuracy
+    
+    best_model_name = max(results, key=results.get)
+    best_model = models[best_model_name]
+    
+    best_model.fit(X_train, y_train)
+    best_preds = best_model.predict(X_test)
+    
+    results_df = pd.DataFrame({
+        "Модель": results.keys(),
+        "Точность": [
+            f"{acc:.2%}"
+            for acc in results.values()
+        ]
+    })
+    
+    st.dataframe(results_df)
+    
+    best_model = max(
+        results,
+        key=results.get
+    )
+    
+    st.success(
+        f"🏆 Лучшая модель: {best_model} "
+        f"({results[best_model]:.2%})"
+    )
+    
+    st.markdown(
+        f"""
+        ### 🏆 Лучшая модель
+    
+        **{best_model}**
+    
+        Точность модели: **{results[best_model]:.2%}**
+    
+        Данная модель показала наилучшие результаты
+        на данном наборе данных и была выбрана как
+        наиболее эффективный алгоритм прогнозирования.
+        """
+    )
+    
+    st.markdown("""
+    <div class="section-title">
+    📉 Confusion Matrix (лучшая модель)
+    </div>
+    """, unsafe_allow_html=True)
+    
+    cm = confusion_matrix(y_test, best_preds)
+    
+    fig, ax = plt.subplots()
+    sns.heatmap(
+        cm,
+        annot=True,
+        fmt="d",
+        cmap="Purples",
+        ax=ax
+    )
+    
+    ax.set_xlabel("Predicted")
+    ax.set_ylabel("Actual")
+    
+    st.pyplot(fig)
