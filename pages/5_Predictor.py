@@ -118,24 +118,11 @@ if dataset == "PIP University":
             "GDP":[0]
         })
     
-        prediction = model.predict(student)[0]
+    prediction = model.predict(student)[0]
     
       st.write("Prediction:", prediction)
     
-        if result == "Graduate":
-            st.success(
-                "✅ Student is likely to Graduate"
-            )
-    
-        elif result == "Dropout":
-            st.error(
-                "⚠️ Student is at risk of Dropout"
-            )
-    
-        else:
-            st.warning(
-                "📚 Student may remain Enrolled"
-            )
+        
 
 elif dataset == "UCI School":
 
