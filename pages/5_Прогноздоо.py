@@ -8,7 +8,7 @@ def load_css():
         )
 
 load_css()
-st.title("Окуучулардын жетишкендиктерин болжолдуу аныктоо")
+st.title("Билим алуучулардын жетишкендиктерин болжолдуу аныктоо")
 
 st.markdown("""
 <div class="page-banner">
