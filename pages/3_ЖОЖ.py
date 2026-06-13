@@ -193,7 +193,7 @@ if uploaded_file is not None:
         f"""
         ### Эң мыкты модель
     
-        **{best_model}**
+        **{best_model_name}**
     
         Моделдин тактыгы: **{results[best_model_name]:.2%}**
     
